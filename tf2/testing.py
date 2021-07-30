@@ -13,6 +13,7 @@ import tensorflow.compat.v2 as tf
 import tensorflow_datasets as tfds
 
 import numpy as np
+from sklearn.metrics import confusion_matrix
 
 FLAGS = flags.FLAGS
 
@@ -400,10 +401,10 @@ def perform_evaluation(model, eval_dataset, eval_steps, ckpt, strategy, topology
             labels.append( x['label'].numpy()[0])
             logits = model(image, training=False)
             preds.append( np.argmax(logits[1].numpy(), -1)[0] )
-            print(np.argmax(logits[1].numpy(), -1)[0], x['label'].numpy()[0])
+            #print(np.argmax(logits[1].numpy(), -1)[0], x['label'].numpy()[0])
             
         logging.info('Finished eval for %s', ckpt)
-
+        print(confusion_matrix(labels, preds))
 
 if __name__ == '__main__':
   tf.compat.v1.enable_v2_behavior()
