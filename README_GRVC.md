@@ -1,5 +1,7 @@
 # SimCLR - A Simple Framework for Contrastive Learning of Visual Representations
 
+USE FOLDER tf2
+
 ## Easy training
 
 Use run.py
